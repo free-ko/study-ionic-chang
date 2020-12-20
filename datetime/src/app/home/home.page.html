@@ -1,0 +1,40 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      날짜/시간 선정 예제
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <ion-grid>
+      <ion-row>
+        <ion-list>
+          <ion-item>
+            <ion-label>날씨 설정</ion-label>
+            <ion-datetime [pickerOptions]="customPickerOptions"
+              placeholder="날짜를 골라주세요" 
+              [(ngModel)] = "myDT"
+              displayFormat="YYYY MM DD" 
+              min="2019-01-31"
+              max="2020-12-31">
+            </ion-datetime>
+          </ion-item>
+        </ion-list>
+      </ion-row>
+      <ion-row>
+        <ion-button (click) = "timeAnalyzed()">날짜/시간 보기</ion-button>
+      </ion-row>
+      <ion-row *ngIf="timeAnalyzedClicked">
+        <h5>선정하신 날짜는 {{YY}}년 {{MM}}월 {{DD}}일 {{HH}}시 {{mm}}분 {{ss}}초 입니다. </h5>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
