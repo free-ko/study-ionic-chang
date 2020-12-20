@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      체크 박스 예제
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <ion-grid>
+      <ion-row>
+        <ion-list>
+          <ion-item>
+            <ion-label>My CheckBox</ion-label>
+            <ion-checkbox slot="end" [(ngModel)]="checkbox"></ion-checkbox>
+          </ion-item>
+        </ion-list>
+      </ion-row>
+      <ion-row>
+        <h5>체크 박스 답은 {{checkbox}} 입니다.</h5>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
