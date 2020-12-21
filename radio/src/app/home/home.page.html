@@ -1,0 +1,50 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      라디오 버트
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <ion-grid>
+      <ion-row>
+        <ion-list>
+          <ion-radio-group [(ngModel)]="stock">
+            <ion-list-header>
+              <ion-label>주식 종목</ion-label>
+            </ion-list-header>
+        
+            <ion-item>
+              <ion-label>NAVER</ion-label>
+              <ion-radio slot="start" value="Naver" mode="ios"></ion-radio>
+            </ion-item>
+        
+            <ion-item>
+              <ion-label>Apple</ion-label>
+              <ion-radio slot="start" value="Apple"></ion-radio>
+            </ion-item>
+        
+            <ion-item>
+              <ion-label>Kakao</ion-label>
+              <ion-radio slot="start" value="Kakao"></ion-radio>
+            </ion-item>
+          </ion-radio-group>
+        </ion-list>
+      </ion-row>
+      <ion-row>
+        <ion-button (click)="showSelectedStock()">선택된 주식 보기</ion-button>
+      </ion-row>
+      <ion-row *ngIf="showStock">
+        <h5>선택된 주식은 {{stock}}입니다.</h5>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
