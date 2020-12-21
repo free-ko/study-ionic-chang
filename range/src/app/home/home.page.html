@@ -1,0 +1,37 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Range
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <ion-grid>
+      <ion-row>
+        <ion-list>
+          <ion-item>
+            <ion-range style="width:80vw" color="danger" pin="true" ticks="true" snaps="true" step="5" dual-knobs="true" [(ngModel)]="range">
+              <!-- 추가적으로 dual-knobs의 값을 사용 하고 싶을 때에 
+                1. Object.keys[this.range]의 결과 값은 ["lower", "upper"] 가 나와 배열로 사용 하면 됩니다.
+                2. Object.assign[[], this.range]의 결과 값은 [lower: 값, upper: 값] 이렇게 배열 안에 key와 value가 들어갑니다. 어플을 만들 때 자주 사용됩니다.
+              -->
+              <ion-label slot="start">좌</ion-label>
+              <ion-label slot="end">우</ion-label>
+            </ion-range>
+          </ion-item>
+        </ion-list>
+      </ion-row>
+      <ion-row>
+        <ion-button (click)="showResult()">결과 확인</ion-button>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
