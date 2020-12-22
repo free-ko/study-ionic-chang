@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Select
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <ion-grid>
+      <ion-row>
+        <ion-list>
+          <ion-list-header>
+            <ion-label>
+             출생년도
+            </ion-label>
+          </ion-list-header>
+        
+          <ion-item>
+            <ion-label>년도</ion-label>
+            <ion-select interface="action-sheet" (ionChange)="selected($event)">
+              <ion-select-option *ngFor="let year of years">{{year}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+        </ion-list>
+      </ion-row>
+      <ion-row>
+        <h3>{{yearSelected}}</h3>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
