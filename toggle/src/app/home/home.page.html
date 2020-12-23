@@ -1,0 +1,53 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Toggle
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <ion-grid>
+      <ion-row>
+        <h1>재테크 하는 방법</h1>
+      </ion-row>
+      <ion-row>
+        <ion-list>
+          <ion-item>
+            <ion-label>부동산</ion-label>
+            <!--다른 토글이 작동되어야 작동됩니다.-->
+            <ion-toggle [(ngModel)]="realEstate" (ionBlur)="reBlurred()"></ion-toggle>
+          </ion-item>
+        
+          <ion-item>
+            <ion-label>금</ion-label>
+            <!--ionChange는 변화를 인지하는 것-->
+            <ion-toggle [(ngModel)]="gold" (ionChange)="goldChanged()"></ion-toggle>
+          </ion-item>
+        
+          <ion-item>
+            <!--ionFocus는 연속적인 것에 반응하지 않습니다.-->
+            <ion-label>USTOCK</ion-label>
+            <ion-toggle [(ngModel)]="usTock" (ionFocus)="usTockFocused()"></ion-toggle>
+          </ion-item>
+        </ion-list>
+      </ion-row>
+      <ion-row>
+        <p>부동산이 선택되었는가? {{realEstate}}</p>
+      </ion-row>
+      <ion-row>
+        <p>금 선택되었는가? {{gold}}</p>
+      </ion-row>
+      <ion-row>
+        <p>USTOCK 선택되었는가? {{usTock}}</p>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
