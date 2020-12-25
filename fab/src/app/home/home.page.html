@@ -1,0 +1,39 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Fab
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Blank</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <ion-grid>
+      <ion-row>
+        <ion-fab vertical="center" horizontal="center">
+          <ion-fab-button>Share</ion-fab-button>
+        </ion-fab>
+
+        <ion-fab-list side="top">
+          <ion-fab-button  (click)="btnMsgCopy(0)">Faceboock</ion-fab-button>
+          <ion-fab-button (click)="btnMsgCopy(1)">Twitter</ion-fab-button>
+          <ion-fab-button (click)="btnMsgCopy(2)">Youtube</ion-fab-button>
+        </ion-fab-list>
+
+        <!-- <ion-fab-list side="start">
+          <ion-fab-button>Vimeo</ion-fab-button>
+        </ion-fab-list> -->
+      </ion-row>
+
+      <ion-row>
+        <h2>{{buttonMsg}}</h2>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
