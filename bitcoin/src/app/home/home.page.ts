@@ -3,6 +3,14 @@ import { HttpClient } from '@angular/common/http'  // import을 한 뒤에 app.m
 import { Chart } from 'chart.js';
 import { ApikeyService } from '../apikey.service';
 
+export interface Bitcoin {
+  symbol_id : string;
+  time_exchange: string;
+  time_coinapi: string;
+  ask_size: number; 
+  bid_price: number;
+  bid_size: number;
+}
 
 @Component({
   selector: 'app-home',
@@ -12,6 +20,9 @@ import { ApikeyService } from '../apikey.service';
 export class HomePage {
 
   private url = 'https://rest.coinapi.io/v1/quotes/COINBASE_SPOT_BCH_USD/latest?apikey=';
+
+  private x: string[] = [];
+  private y: number[] = [];
 
   @ViewChild('myChart', {static: true}) myChart: ElementRef
 
@@ -32,12 +43,26 @@ export class HomePage {
     }
 
     getBitcoin() {
-      const URL = this.url + this.api.apikey;
+      const URL = this.url + this.api.apikey
       this.http.get(URL)
-      .subscribe(data => {
+      .subscribe((data: Bitcoin[]) => {
         console.log(data);
+        data.forEach(eachCoin => {
+          this.y.push(eachCoin.bid_price);
+          const time = this.timeMake(eachCoin.time_exchange);
+          this.x.push(time);
+        });
+        this.y.reverse();
+        this.x.reverse();
         this.isLoding = false;
     });
+  }
+
+  timeMake(timeStr: string): string {
+    const timeDate = new Date(timeStr);
+    const minute = timeDate.getMinutes();
+    const seconds = timeDate.getSeconds();
+    return `${minute}-` + seconds;
   }
 
   // chart.js를 통해 차트를 구현하는 함수 입니다.
@@ -45,10 +70,10 @@ export class HomePage {
     return new Chart(this.myChart.nativeElement, {
       type: 'line',
       data: {
-          labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+          labels: this.x,
           datasets: [{
-              label: '# of Votes',
-              data: [12, 19, 3, 5, 2, 3],
+              label: 'Bitcoin bit pirce',
+              data: this.y,
               backgroundColor: [
                   'rgba(255, 99, 132, 0.2)',
                   'rgba(54, 162, 235, 0.2)',
@@ -68,15 +93,6 @@ export class HomePage {
               borderWidth: 1
           }]
       },
-      options: {
-          scales: {
-              yAxes: [{
-                  ticks: {
-                      beginAtZero: true
-                  }
-              }]
-          }
-      }
   });
   }
 }
