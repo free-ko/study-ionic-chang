@@ -1,17 +1,8 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http'  // import을 한 뒤에 app.module.ts에도 추가해줘야 합니다.
 import { Chart } from 'chart.js';
+import { ApikeyService } from '../apikey.service';
 
-
-export interface $Bitcoin {
-  BTCUSD: {
-    ask: number;
-    averages: any;
-    bid: number;
-    last: number;
-    timestamp: number;
-  };
-}
 
 @Component({
   selector: 'app-home',
@@ -20,12 +11,15 @@ export interface $Bitcoin {
 })
 export class HomePage {
 
+  private url = 'https://rest.coinapi.io/v1/quotes/COINBASE_SPOT_BCH_USD/latest?apikey=';
+
   @ViewChild('myChart', {static: true}) myChart: ElementRef
 
   private isLoding = false;
 
   constructor(
-    private http:HttpClient
+    private http:HttpClient,
+    private api: ApikeyService,
   ) {}
 
   getBitcoinBtnClicked() {
@@ -38,9 +32,10 @@ export class HomePage {
     }
 
     getBitcoin() {
-      this.http.get('https://apiv2.bitcoinaverage.com/indices/global/ticker/all?crypto=BTC&fiat=USD')
-      .subscribe((coin: $Bitcoin) => {
-        console.log(coin.BTCUSD.timestamp, coin.BTCUSD.bid);
+      const URL = this.url + this.api.apikey;
+      this.http.get(URL)
+      .subscribe(data => {
+        console.log(data);
         this.isLoding = false;
     });
   }
