@@ -1,4 +1,4 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http'  // import을 한 뒤에 app.module.ts에도 추가해줘야 합니다.
 import { Chart } from 'chart.js';
 import { ApikeyService } from '../apikey.service';
@@ -17,7 +17,7 @@ export interface Bitcoin {
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage {
+export class HomePage implements OnInit{ 
 
   private url = 'https://rest.coinapi.io/v1/quotes/COINBASE_SPOT_BCH_USD/latest?apikey=';
 
@@ -32,6 +32,24 @@ export class HomePage {
     private http:HttpClient,
     private api: ApikeyService,
   ) {}
+
+  // 1. ionViewWillEnter
+  // ionViewWillEnter() {
+  // this.refresh(); 
+  // }
+
+
+  // 2. ngOnInit
+  ngOnInit() {
+    this.refresh();
+  }
+
+  refresh() {
+    if (this.isLoding) {
+      this.isLoding = true;
+      this.getBitcoin();
+    }
+  }
 
   getBitcoinBtnClicked() {
     // 밑에 코드를 통해서 API를 불러오는 동안에 혹여나 함수가 또 실행 되었을 경우를 대비해
@@ -54,6 +72,7 @@ export class HomePage {
         });
         this.y.reverse();
         this.x.reverse();
+        this.showChart();
         this.isLoding = false;
     });
   }

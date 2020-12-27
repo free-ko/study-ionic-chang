@@ -1,8 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Bitocin
-    </ion-title>
+    <div>
+      <h2>Bitcoin</h2>
+    </div>
+
+    <ion-row class="ion-justify-content-end">
+      <ion-button style="margin: -40px 30px 0 0" (click)="refresh()"><ion-icon name="refresh-outline"></ion-icon></ion-button>
+    </ion-row>
   </ion-toolbar>
 </ion-header>
 
