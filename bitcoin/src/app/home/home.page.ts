@@ -18,14 +18,24 @@ export interface $Bitcoin {
 })
 export class HomePage {
 
+  private isLoding = false;
+
   constructor(
     private http:HttpClient
   ) {}
 
   getBitcoinBtnClicked() {
-    this.http.get('https://apiv2.bitcoinaverage.com/indices/global/ticker/all?crypto=BTC&fiat=USD')
-    .subscribe((coin: $Bitcoin) => {
-      console.log(coin.BTCUSD.timestamp, coin.BTCUSD.bid);
+    if (this.isLoding) {
+        this.isLoding = true;
+        this.getBitcoin();
+      }
+    }
+
+    getBitcoin() {
+      this.http.get('https://apiv2.bitcoinaverage.com/indices/global/ticker/all?crypto=BTC&fiat=USD')
+      .subscribe((coin: $Bitcoin) => {
+        console.log(coin.BTCUSD.timestamp, coin.BTCUSD.bid);
+        this.isLoding = false;
     });
   }
 }
