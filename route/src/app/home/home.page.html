@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      First Page
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+<ion-grid>
+  <ion-row>
+    <ion-button (click)="moveToPage('second')">Second 페이지 이동</ion-button>
+  </ion-row>
+  <ion-row>
+    <ion-button (click)="moveToPage('third')">Third 페이지 이동</ion-button>
+  </ion-row>
+  <ion-row>
+    <ion-button (click)="moveToPage('userid')">Id 페이지 이동</ion-button>
+  </ion-row>
+</ion-grid>
+</ion-content>

@@ -14,7 +14,7 @@ export class ApikeyService {
   constructor() { }
 
   // 다른 함수에서도 사용 할 수 있도록 public으로 지정합니다.
-  public apikey() {
+  public get apikey() {
     return this._apikey;
   }
 }

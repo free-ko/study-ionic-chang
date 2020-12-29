@@ -29,7 +29,7 @@ export class HomePage implements OnInit{
   private isLoding = false;
 
   constructor(
-    private http:HttpClient,
+    private http: HttpClient,
     private api: ApikeyService,
   ) {}
 
