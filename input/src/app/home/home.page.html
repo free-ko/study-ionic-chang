@@ -1,0 +1,23 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      입력값 예제
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="line-input">
+    <ion-item>
+      <ion-label position="floating">이메일</ion-label>
+      <ion-input [(ngModel)="email"]></ion-input>
+    </ion-item>
+  </div>
+  <div>
+    <ion-grid>
+      <ion-row>
+        <ion-button (click)="printInput()">Print</ion-button>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>
