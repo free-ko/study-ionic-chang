@@ -1,6 +1,6 @@
 # Study with Ionic
 
-### Study List
+### Category
 - alert
 - checkbox
 - datetime
